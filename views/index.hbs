@@ -1,0 +1,29 @@
+<html class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="css/input.css"
+    />
+    <link rel="stylesheet" href="css/dist/output.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="flex justify-center items-center flex-col h-full w-full bg-off-white">
+    <div id="card-parent" class="h-1/2 w-full bg-orange"></div>
+    {{!-- Start off with 5 colors, min 3 colors, max 8 colors --}}
+    <h1 class="font-display">Hello World</h1>
+    <script type="module" src="js/card-loader.js"></script>
+    <script type="module" src="js/generator.js"></script>
+  </body>
+</html>
