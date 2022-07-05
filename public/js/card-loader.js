@@ -5,57 +5,68 @@ const CARD_PARENT = document.getElementById("card-parent");
 
 // Generate 5 cards, 3 min, 8 max
 window.addEventListener("load", (ev) => {
-  let color;
-
   // Create the cards
   for (let i = 0; i < numOfCards; i++) {
-    // Generate the color
-    color = "#" + generateColor();
-    addCard(color);
+    addCard();
   }
 });
 
 /// Generates equal widths depending on number of cards
 function generateWidthPercentage(num) {
-  return (1 / num) * numOfCards;
+  return (1 / num) * numOfCards * 100;
 }
 
 /// Adds a card to view
-function addCard(color) {
+function addCard() {
+  let color = "#" + generateColor();
+
   let card = document.createElement("div");
   card.classList.add(
+    "card",
     "flex",
     "justify-center",
     "items-center",
     "flex-col",
-    "rounded-md",
-    "h-full",
-    "m-2"
+    "rounded-lg",
+    "h-full"
   );
   card.style.width = generateWidthPercentage(numOfCards) + "%";
+  card.style.margin = "8px";
+  card.style.borderRadius = 10 + "px";
 
   let cardColor = document.createElement("div");
-  cardColor.classList.add("h-1/2", "w-full");
+  cardColor.classList.add("cardColor", "h-1/2", "w-full");
   cardColor.style.backgroundColor = color;
 
   let cardDetail = document.createElement("div");
+  cardDetail.style.backgroundColor = "#ECF2F7";
   cardDetail.classList.add(
     "flex",
     "justify-center",
     "items-center",
     "h-1/2",
-    "w-full",
-    "bg-off-white"
+    "w-full"
   );
 
   let h1 = document.createElement("h1");
-  h1.classList.add("font-display", "text-4xl");
+  h1.innerHTML = color;
+  h1.classList.add("cardDetail", "font-display", "text-4xl");
 
   card.appendChild(cardColor);
   card.appendChild(cardDetail);
   cardDetail.appendChild(h1);
 
   CARD_PARENT.appendChild(card);
+}
+
+function generateNewColors(){
+  let cards = document.getElementsByClassName("card");
+  let color;
+  for(var i = 0; i < cards.length; i++){
+    color = "#" + generateColor();
+    document.getElementsByClassName("cardColor")[i].style.backgroundColor = color;
+    document.getElementsByClassName("cardDetail")[i].innerHTML = color;
+  }
 }
 
 /// Removes a card from view
@@ -65,8 +76,11 @@ function removeCard() {
     return;
   }
 
-  console.log(numOfCards);
+  let cards = document.getElementsByClassName("card");
+  let lastCard = cards[cards.length - 1];
+  CARD_PARENT.removeChild(lastCard);
+
   numOfCards--;
 }
 
-export { addCard, removeCard };
+export { addCard, removeCard, generateNewColors };
