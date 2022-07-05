@@ -18,12 +18,29 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
   </head>
-  <body class="flex justify-center items-center flex-col h-full w-full bg-off-white">
-    <div id="card-parent" class="h-1/2 w-full bg-orange"></div>
-    {{!-- Start off with 5 colors, min 3 colors, max 8 colors --}}
-    <h1 class="font-display">Hello World</h1>
+  <body
+    class="flex justify-center items-center flex-col h-full w-full bg-black"
+  >
+    <div
+      id="card-parent"
+      class="h-1/2 w-full border-solid border-4 border-dark-blue"
+    ></div>
+
+    <div id="btns-container" class="flex justify-center items-center flex-row">
+      {{! Start off with 5 colors, min 3 colors, max 8 colors }}
+      <button id="remove"
+        class="transition duration-150 text-4xl rounded-full bg-dark-slate hover:bg-red h-12 w-12 m-"
+      ><i class="ri-subtract-line text-off-white"></i></button>
+      <button id="add"
+        class="transition duration-150 text-4xl rounded-full bg-dark-slate hover:bg-green h-12 w-12 m-1"
+      ><i class="ri-add-line text-off-white"></i></button>
+    </div>
     <script type="module" src="js/card-loader.js"></script>
-    <script type="module" src="js/generator.js"></script>
+    <script type="module" src="js/buttons.js"></script>
   </body>
 </html>

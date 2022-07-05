@@ -21,3 +21,25 @@ window.addEventListener("load", (ev) => {
 function generateWidthPercentage(num) {
   return (1 / num) * numOfCards;
 }
+
+function addCard() {
+  if (numOfCards == 8) {
+    window.alert("Maximum amount of color cards reached");
+    return;
+  }
+  
+  console.log(generateColor() + "\n" + numOfCards);
+  numOfCards++;
+}
+
+function removeCard() {
+  if (numOfCards == 3) {
+    window.alert("Minimum amount of color cards reached");
+    return;
+  }
+
+  console.log(numOfCards);
+  numOfCards--;
+}
+
+export {addCard, removeCard}
