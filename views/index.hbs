@@ -28,17 +28,19 @@
   >
     <div
       id="card-parent"
-      class="h-1/2 w-full border-solid border-4 border-dark-blue"
+      class="flex justify-center items-center flex-row h-1/2 w-full border-solid border-4 border-dark-blue"
     ></div>
 
     <div id="btns-container" class="flex justify-center items-center flex-row">
       {{! Start off with 5 colors, min 3 colors, max 8 colors }}
-      <button id="remove"
-        class="transition duration-150 text-4xl rounded-full bg-dark-slate hover:bg-red h-12 w-12 m-"
-      ><i class="ri-subtract-line text-off-white"></i></button>
-      <button id="add"
-        class="transition duration-150 text-4xl rounded-full bg-dark-slate hover:bg-green h-12 w-12 m-1"
-      ><i class="ri-add-line text-off-white"></i></button>
+      <button
+        id="remove"
+        class="transition duration-150 font-body font-bold text-off-white rounded-full bg-dark-slate hover:bg-red m-1 px-5 py-2"
+      >Remove card</button>
+      <button
+        id="add"
+        class="transition duration-150 font-body font-bold text-off-white rounded-full bg-dark-slate hover:bg-green m-1 px-5 py-2"
+      >Add a card</button>
     </div>
     <script type="module" src="js/card-loader.js"></script>
     <script type="module" src="js/buttons.js"></script>
