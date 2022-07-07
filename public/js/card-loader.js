@@ -18,39 +18,25 @@ function generateWidthPercentage(num) {
 
 /// Adds a card to view
 function addCard() {
-  let color = "#" + generateColor();
+  let color = generateColor()
+  let colorStr = "#" + color;
 
-  let card = document.createElement("div");
-  card.classList.add(
-    "card",
-    "flex",
-    "justify-center",
-    "items-center",
-    "flex-col",
-    "rounded-lg",
-    "h-full"
-  );
+  // Card
+  let card = createElement("div", ["card", "flex", "justify-center", "items-center", "flex-col", "rounded-lg", "h-full"], null);
   card.style.width = generateWidthPercentage(numOfCards) + "%";
   card.style.margin = "8px";
   card.style.borderRadius = 10 + "px";
 
-  let cardColor = document.createElement("div");
-  cardColor.classList.add("cardColor", "h-1/2", "w-full");
-  cardColor.style.backgroundColor = color;
+  // Card color
+  let cardColor = createElement("div", ["cardColor", "h-1/2", "w-full"], null);
+  cardColor.style.backgroundColor = colorStr;
 
-  let cardDetail = document.createElement("div");
+  // Card detail
+  let cardDetail = createElement("div", ["flex", "justify-center", "items-center", "h-1/2", "w-full"], null);
   cardDetail.style.backgroundColor = "#ECF2F7";
-  cardDetail.classList.add(
-    "flex",
-    "justify-center",
-    "items-center",
-    "h-1/2",
-    "w-full"
-  );
 
-  let h1 = document.createElement("h1");
-  h1.innerHTML = color;
-  h1.classList.add("cardDetail", "font-display", "text-4xl");
+  let h1 = createElement("h1", ["cardDetail", "font-display", "text-4xl"], colorStr);
+  let rgb = createElement("h5", ["cardDetail", "font-display"], null);
 
   card.appendChild(cardColor);
   card.appendChild(cardDetail);
@@ -59,12 +45,28 @@ function addCard() {
   CARD_PARENT.appendChild(card);
 }
 
-function generateNewColors(){
+function createElement(element, classes, content) {
+  Array.isArray(classes);
+  let newElement = document.createElement(element);
+
+  for (var i = 0; i < classes.length; i++) {
+    newElement.classList.add(classes[i]);
+  }
+
+  if (content != null && content != undefined) {
+    newElement.innerHTML = content;
+  }
+
+  return newElement;
+}
+
+function generateNewColors() {
   let cards = document.getElementsByClassName("card");
   let color;
-  for(var i = 0; i < cards.length; i++){
+  for (var i = 0; i < cards.length; i++) {
     color = "#" + generateColor();
-    document.getElementsByClassName("cardColor")[i].style.backgroundColor = color;
+    document.getElementsByClassName("cardColor")[i].style.backgroundColor =
+      color;
     document.getElementsByClassName("cardDetail")[i].innerHTML = color;
   }
 }
