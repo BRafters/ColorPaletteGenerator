@@ -1,6 +1,7 @@
 import generateColor from "./generator.js";
+import convertToRGB from "./hex-converter.js";
 
-let numOfCards = 5;
+let numOfCards = 5; // Refactor this, determine by using number of cards instead
 const CARD_PARENT = document.getElementById("card-parent");
 
 // Generate 5 cards, 3 min, 8 max
@@ -32,15 +33,16 @@ function addCard() {
   cardColor.style.backgroundColor = colorStr;
 
   // Card detail
-  let cardDetail = createElement("div", ["flex", "justify-center", "items-center", "h-1/2", "w-full"], null);
+  let cardDetail = createElement("div", ["flex", "justify-center", "items-center", "flex-col", "h-1/2", "w-full"], null);
   cardDetail.style.backgroundColor = "#ECF2F7";
 
   let h1 = createElement("h1", ["cardDetail", "font-display", "text-4xl"], colorStr);
-  let rgb = createElement("h5", ["cardDetail", "font-display"], null);
+  let rgb = createElement("h5", ["cardDetail", "font-display"], convertToRGB(color));
 
   card.appendChild(cardColor);
   card.appendChild(cardDetail);
   cardDetail.appendChild(h1);
+  cardDetail.appendChild(rgb);
 
   CARD_PARENT.appendChild(card);
 }
