@@ -1,41 +1,47 @@
 const HEX_MAP = new Map([
-  ["0", 0],
-  ["1", 1],
-  ["2", 2],
-  ["3", 3],
-  ["4", 4],
-  ["5", 5],
-  ["6", 6],
-  ["7", 7],
-  ["8", 8],
-  ["9", 9],
-  ["A", 10],
-  ["B", 11],
-  ["C", 12],
-  ["D", 13],
-  ["E", 14],
-  ["F", 15],
+    ["0", 0],
+    ["1", 1],
+    ["2", 2],
+    ["3", 3],
+    ["4", 4],
+    ["5", 5],
+    ["6", 6],
+    ["7", 7],
+    ["8", 8],
+    ["9", 9],
+    ["A", 10],
+    ["B", 11],
+    ["C", 12],
+    ["D", 13],
+    ["E", 14],
+    ["F", 15],
 ]);
 
 /// Converts a hex value to an rgb value
 function convertToRGB(color = "") {
-  let rgb = "RGB: ";
-  let rgbValue = 0;
+    let rgb = "RGB: ";
 
-  for (var i = 0; i < color.length; i++) {
-    if ((i + 1) % 2 == 0) {
-      // Concat the value to the string
-      rgb = rgb.concat(rgbValue, " ");
-      rgbValue = 0;
+    // TODO: We should also handle for the opacity values before the HEX rgb value
+    if (color.length > 6) {
+        window.alert("Invalid HEX color code");
+        return;
     }
 
-    // If a character is a letter, we need to access the map and grab the corresponding number, then multiply
-    if (color.charAt(i).match(/([A-Za-z])/i)) {
-      rgbValue += HEX_MAP.get(color.charAt(i).toUpperCase()) * 16;
-    } else rgbValue += HEX_MAP.get(color.charAt(i).toUpperCase());
-  }
+    // If the char is an alpha character, we will need to grab it from the map, then multiply by 16
+    rgb = rgb.concat(colorSection(color.substring(0, 2)) + " ");
+    rgb = rgb.concat(colorSection(color.substring(2, 4)) + " ");
+    rgb = rgb.concat(colorSection(color.substring(4, 6)) + " ");
 
-  return rgb;
+    return rgb;
+}
+
+function colorSection(colorSection = "") {
+    let colorValue = 0;
+
+    colorValue += (HEX_MAP.get(colorSection.charAt(0).toUpperCase()) * 16);
+    colorValue += (HEX_MAP.get(colorSection.charAt(1).toUpperCase()));
+
+    return colorValue;
 }
 
 export default convertToRGB;
